@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.sung.testdemo">
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity
+            android:name=".main.Main1Activity"
+            android:launchMode="singleTop" />
+        <activity android:name=".main.Main2Activity" />
+        <activity android:name=".main.Main3Activity" />
+        <activity
+            android:name=".TestActivity"
+            android:launchMode="singleTop">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".tapview.TapActivity"
+            android:screenOrientation="landscape" />
+        <activity android:name=".text2pic.Text2PicActivity" />
+        <activity android:name=".gesture.GestureActivity" />
+        <activity android:name=".scoreboard.ScoreBoardActivity" />
+        <activity android:name=".griddecoration.GridActivity" />
+        <activity android:name=".livedata_viewmodel.LiveData_ViewModelActivity" />
+        <activity
+            android:name=".orientation.OrientationActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".orientation.Orientation2Activity"
+            android:screenOrientation="landscape" />
+        <activity android:name=".zoomscrollview.ZoomActivity" />
+        <activity android:name=".zoomscrollview.PullerActivity"></activity>
+    </application>
+
+</manifest>
