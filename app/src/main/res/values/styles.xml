@@ -8,4 +8,14 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="OverFlowMenuTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!--文字的颜色-->
+        <item name="android:textColor">@android:color/holo_red_light</item>
+        <!--不覆盖toolbar-->
+        <item name="overlapAnchor">false</item>
+    </style>
+    <style name="ToolBarTheme" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
+        <!--toolbar字体颜色（同时会改变menu三点和返回按键颜色）-->
+        <!--<item name="android:textColorPrimary">@android:color/holo_red_light</item>-->
+    </style>
 </resources>

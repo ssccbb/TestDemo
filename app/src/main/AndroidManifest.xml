@@ -38,7 +38,11 @@
             android:name=".orientation.Orientation2Activity"
             android:screenOrientation="landscape" />
         <activity android:name=".zoomscrollview.ZoomActivity" />
-        <activity android:name=".zoomscrollview.PullerActivity"></activity>
+        <activity android:name=".zoomscrollview.PullerActivity" />
+        <activity android:name=".hidelayout.HideLayoutActivity" />
+        <activity android:name=".metiraldesign.MetiralListActivity" />
+        <activity android:name=".metiraldesign.ToolBarActivity" />
+        <activity android:name=".metiraldesign.BehaviorActivity"></activity>
     </application>
 
 </manifest>

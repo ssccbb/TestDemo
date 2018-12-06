@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".metiraldesign.ToolBarActivity">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/colorPrimary"
+        app:title="Metiral Design"
+        app:subtitle="sub tittle"
+        app:subtitleTextColor="@android:color/white"
+        app:titleTextColor="@android:color/white"
+        app:popupTheme="@style/OverFlowMenuTheme"
+        app:theme="@style/ToolBarTheme">
+        <TextView
+            android:id="@+id/tittle"
+            android:text="Metiral Design"
+            android:visibility="gone"
+            android:layout_gravity="center"
+            android:maxLines="1"
+            android:ellipsize="end"
+            android:textColor="@android:color/white"
+            android:textSize="20sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </android.support.v7.widget.Toolbar>
+
+    <CheckBox
+        android:id="@+id/cb_subtittle"
+        android:text="subtittle"
+        android:checked="true"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <CheckBox
+        android:id="@+id/cb_tittle"
+        android:text="tittle"
+        android:checked="true"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar"
+        app:layout_constraintLeft_toRightOf="@+id/cb_subtittle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <CheckBox
+        android:id="@+id/cb_centertittle"
+        android:text="center tittle"
+        android:checked="false"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar"
+        app:layout_constraintLeft_toRightOf="@+id/cb_tittle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <CheckBox
+        android:id="@+id/cb_back"
+        android:text="back up display"
+        android:checked="true"
+        app:layout_constraintTop_toBottomOf="@+id/cb_subtittle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <CheckBox
+        android:id="@+id/cb_logo"
+        android:text="logo"
+        android:checked="false"
+        app:layout_constraintTop_toBottomOf="@+id/cb_subtittle"
+        app:layout_constraintLeft_toRightOf="@+id/cb_back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/color1"
+        android:text="toolbar color"
+        app:layout_constraintTop_toBottomOf="@id/cb_back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <CheckBox
+        android:id="@+id/cb_red"
+        android:text="red"
+        android:checked="false"
+        app:layout_constraintTop_toBottomOf="@+id/color1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <CheckBox
+        android:id="@+id/cb_black"
+        android:text="black"
+        android:checked="false"
+        app:layout_constraintTop_toBottomOf="@+id/color1"
+        app:layout_constraintLeft_toRightOf="@+id/cb_red"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/color2"
+        android:text="text color"
+        app:layout_constraintTop_toBottomOf="@id/cb_black"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <CheckBox
+        android:id="@+id/cb_blue"
+        android:text="blue"
+        android:checked="false"
+        app:layout_constraintTop_toBottomOf="@+id/color2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <CheckBox
+        android:id="@+id/cb_black2"
+        android:text="black"
+        android:checked="false"
+        app:layout_constraintTop_toBottomOf="@+id/color2"
+        app:layout_constraintLeft_toRightOf="@+id/cb_blue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+</android.support.constraint.ConstraintLayout>

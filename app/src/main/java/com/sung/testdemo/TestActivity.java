@@ -13,8 +13,10 @@ import android.widget.TextView;
 
 import com.sung.testdemo.gesture.GestureActivity;
 import com.sung.testdemo.griddecoration.GridActivity;
+import com.sung.testdemo.hidelayout.HideLayoutActivity;
 import com.sung.testdemo.livedata_viewmodel.LiveData_ViewModelActivity;
 import com.sung.testdemo.main.Main1Activity;
+import com.sung.testdemo.metiraldesign.MetiralListActivity;
 import com.sung.testdemo.orientation.OrientationActivity;
 import com.sung.testdemo.scoreboard.ScoreBoardActivity;
 import com.sung.testdemo.tapview.TapActivity;
@@ -33,7 +35,6 @@ public class TestActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_test);
 
-
         final List<String> data = new ArrayList();
         data.add("生命周期");
         data.add("视频播放控制");
@@ -45,6 +46,8 @@ public class TestActivity extends AppCompatActivity {
         data.add("横竖屏切换bug");
         data.add("头部放大scrollview");
         data.add("头尾可拉动scrollview");
+        data.add("尾部隐藏内容的viewgroup");
+        data.add("Metiral Design 控件");
 
         list = findViewById(R.id.list);
         list.setLayoutManager(new LinearLayoutManager(this));
@@ -92,6 +95,12 @@ public class TestActivity extends AppCompatActivity {
                         }
                         if (position == 9){
                             startActivity(new Intent(TestActivity.this,PullerActivity.class));
+                        }
+                        if (position == 10){
+                            startActivity(new Intent(TestActivity.this,HideLayoutActivity.class));
+                        }
+                        if (position == 11){
+                            startActivity(new Intent(TestActivity.this,MetiralListActivity.class));
                         }
                     }
                 });
