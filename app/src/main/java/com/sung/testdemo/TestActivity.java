@@ -11,6 +11,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.sung.testdemo.GridScoreBoard.GridHistoryActivity;
+import com.sung.testdemo.autocolumngridview.AutoColumnGridActivity;
+import com.sung.testdemo.countingdown.CountingDownActivity;
 import com.sung.testdemo.gesture.GestureActivity;
 import com.sung.testdemo.griddecoration.GridActivity;
 import com.sung.testdemo.hidelayout.HideLayoutActivity;
@@ -48,6 +51,9 @@ public class TestActivity extends AppCompatActivity {
         data.add("头尾可拉动scrollview");
         data.add("尾部隐藏内容的viewgroup");
         data.add("Metiral Design 控件");
+        data.add("表格记录");
+        data.add("倒计时");
+        data.add("自适应数量表格布局");
 
         list = findViewById(R.id.list);
         list.setLayoutManager(new LinearLayoutManager(this));
@@ -101,6 +107,15 @@ public class TestActivity extends AppCompatActivity {
                         }
                         if (position == 11){
                             startActivity(new Intent(TestActivity.this,MetiralListActivity.class));
+                        }
+                        if (position == 12){
+                            startActivity(new Intent(TestActivity.this, GridHistoryActivity.class));
+                        }
+                        if (position == 13){
+                            startActivity(new Intent(TestActivity.this, CountingDownActivity.class));
+                        }
+                        if (position == 14){
+                            startActivity(new Intent(TestActivity.this, AutoColumnGridActivity.class));
                         }
                     }
                 });

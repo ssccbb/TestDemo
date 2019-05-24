@@ -28,8 +28,6 @@ public class MetiralListActivity extends AppCompatActivity {
 
         final List<String> data = new ArrayList();
         data.add("toolbar");
-        data.add("behavior");
-        data.add("CoordinatorLayout");
 
         list = findViewById(R.id.list);
         list.setLayoutManager(new LinearLayoutManager(this));
