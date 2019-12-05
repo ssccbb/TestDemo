@@ -24,6 +24,7 @@ import com.sung.testdemo.orientation.OrientationActivity;
 import com.sung.testdemo.scoreboard.ScoreBoardActivity;
 import com.sung.testdemo.tapview.TapActivity;
 import com.sung.testdemo.text2pic.Text2PicActivity;
+import com.sung.testdemo.viewtobitmap.SnapshotActivity;
 import com.sung.testdemo.zoomscrollview.PullerActivity;
 import com.sung.testdemo.zoomscrollview.ZoomActivity;
 
@@ -54,6 +55,7 @@ public class TestActivity extends AppCompatActivity {
         data.add("表格记录");
         data.add("倒计时");
         data.add("自适应数量表格布局");
+        data.add("view截图生成图片");
 
         list = findViewById(R.id.list);
         list.setLayoutManager(new LinearLayoutManager(this));
@@ -116,6 +118,9 @@ public class TestActivity extends AppCompatActivity {
                         }
                         if (position == 14){
                             startActivity(new Intent(TestActivity.this, AutoColumnGridActivity.class));
+                        }
+                        if (position == 15){
+                            startActivity(new Intent(TestActivity.this, SnapshotActivity.class));
                         }
                     }
                 });

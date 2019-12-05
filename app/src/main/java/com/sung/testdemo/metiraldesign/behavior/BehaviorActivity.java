@@ -1,4 +1,4 @@
-package com.sung.testdemo.metiraldesign;
+package com.sung.testdemo.metiraldesign.behavior;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;

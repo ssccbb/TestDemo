@@ -9,7 +9,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".autocolumngridview.AutoColumnGridActivity"></activity>
+        <activity android:name=".viewtobitmap.SnapshotActivity"></activity>
+        <activity android:name=".metiraldesign.fab.FABActivity" />
+        <activity android:name=".autocolumngridview.AutoColumnGridActivity" />
         <activity android:name=".countingdown.CountingDownActivity" />
         <activity android:name=".GridScoreBoard.GridHistoryActivity" />
         <activity
@@ -44,8 +46,9 @@
         <activity android:name=".zoomscrollview.PullerActivity" />
         <activity android:name=".hidelayout.HideLayoutActivity" />
         <activity android:name=".metiraldesign.MetiralListActivity" />
-        <activity android:name=".metiraldesign.ToolBarActivity" />
-        <activity android:name=".metiraldesign.BehaviorActivity" />
+        <activity android:name=".metiraldesign.toolbar.ToolBarActivity" />
+        <activity android:name=".metiraldesign.behavior.BehaviorActivity" />
+        <activity android:name=".metiraldesign.appbarlayout.AppbarActivity" />
     </application>
 
 </manifest>

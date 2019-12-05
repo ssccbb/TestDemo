@@ -12,8 +12,9 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.sung.testdemo.R;
-import com.sung.testdemo.TestActivity;
-import com.sung.testdemo.main.Main1Activity;
+import com.sung.testdemo.metiraldesign.appbarlayout.AppbarActivity;
+import com.sung.testdemo.metiraldesign.fab.FABActivity;
+import com.sung.testdemo.metiraldesign.toolbar.ToolBarActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,7 +28,9 @@ public class MetiralListActivity extends AppCompatActivity {
         setContentView(R.layout.activity_test);
 
         final List<String> data = new ArrayList();
-        data.add("toolbar");
+        data.add("Toolbar");
+        data.add("AppbarLayout");
+        data.add("FAB");
 
         list = findViewById(R.id.list);
         list.setLayoutManager(new LinearLayoutManager(this));
@@ -47,7 +50,13 @@ public class MetiralListActivity extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
                         if (position == 0){
-                            startActivity(new Intent(MetiralListActivity.this,ToolBarActivity.class));
+                            startActivity(new Intent(MetiralListActivity.this, ToolBarActivity.class));
+                        }
+                        if (position == 1){
+                            startActivity(new Intent(MetiralListActivity.this, AppbarActivity.class));
+                        }
+                        if (position == 2){
+                            startActivity(new Intent(MetiralListActivity.this, FABActivity.class));
                         }
                     }
                 });
