@@ -21,9 +21,11 @@ import com.sung.testdemo.livedata_viewmodel.LiveData_ViewModelActivity;
 import com.sung.testdemo.main.Main1Activity;
 import com.sung.testdemo.metiraldesign.MetiralListActivity;
 import com.sung.testdemo.orientation.OrientationActivity;
+import com.sung.testdemo.randomnickname.RandomNicknameActivity;
 import com.sung.testdemo.scoreboard.ScoreBoardActivity;
 import com.sung.testdemo.tapview.TapActivity;
 import com.sung.testdemo.text2pic.Text2PicActivity;
+import com.sung.testdemo.videoframes.VideoFetchingActivity;
 import com.sung.testdemo.viewtobitmap.SnapshotActivity;
 import com.sung.testdemo.zoomscrollview.PullerActivity;
 import com.sung.testdemo.zoomscrollview.ZoomActivity;
@@ -56,6 +58,8 @@ public class TestActivity extends AppCompatActivity {
         data.add("倒计时");
         data.add("自适应数量表格布局");
         data.add("view截图生成图片");
+        data.add("生成随机昵称");
+        data.add("获取视频封面截图");
 
         list = findViewById(R.id.list);
         list.setLayoutManager(new LinearLayoutManager(this));
@@ -121,6 +125,12 @@ public class TestActivity extends AppCompatActivity {
                         }
                         if (position == 15){
                             startActivity(new Intent(TestActivity.this, SnapshotActivity.class));
+                        }
+                        if (position == 16){
+                            startActivity(new Intent(TestActivity.this, RandomNicknameActivity.class));
+                        }
+                        if (position == 17){
+                            VideoFetchingActivity.luanch(TestActivity.this,"http://fdfs-uat.tyi365.com/video/M00/00/00/rB_IzV0UgoWALo87AGH_XKFk6L0468.mp4",5);
                         }
                     }
                 });
