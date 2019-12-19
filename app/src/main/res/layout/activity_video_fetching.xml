@@ -64,14 +64,13 @@
             android:text="已选封面"
             android:textColor="#ffffff" />
 
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/rc_frames"
-            android:layout_width="match_parent"
-            android:layout_height="110dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
+        <com.sung.testdemo.videoframes.VideoFetchingSeekbar
+            android:id="@+id/vfs_seekbar"
+            android:clickable="true"
             android:layout_marginBottom="20dp"
-            android:scrollbars="none" />
+            android:layout_gravity="center"
+            android:layout_width="400dp"
+            android:layout_height="54dp"/>
     </LinearLayout>
 
 </RelativeLayout>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="400dp"
+    android:layout_height="54dp">
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rc_thumb_nails"
+        android:layout_width="400dp"
+        android:layout_height="50dp"
+        android:layout_centerInParent="true" />
+
+    <include layout="@layout/layout_video_fetching_thumb_item" />
+
+</RelativeLayout>

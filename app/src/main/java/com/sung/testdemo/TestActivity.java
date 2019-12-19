@@ -130,7 +130,7 @@ public class TestActivity extends AppCompatActivity {
                             startActivity(new Intent(TestActivity.this, RandomNicknameActivity.class));
                         }
                         if (position == 17){
-                            VideoFetchingActivity.luanch(TestActivity.this,"http://fdfs-uat.tyi365.com/video/M00/00/00/rB_IzV0UgoWALo87AGH_XKFk6L0468.mp4",5);
+                            VideoFetchingActivity.luanch(TestActivity.this,"/storage/emulated/0/tencent/MicroMsg/WeiXin/1576737259580.mp4");
                         }
                     }
                 });

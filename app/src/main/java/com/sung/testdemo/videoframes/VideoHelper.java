@@ -1,6 +1,5 @@
 package com.sung.testdemo.videoframes;
 
-import android.content.Context;
 import android.graphics.Bitmap;
 import android.media.MediaMetadataRetriever;
 import android.os.AsyncTask;
@@ -19,7 +18,6 @@ import java.util.List;
  * @Description:
  */
 public class VideoHelper {
-    private Context context;
     private static final String LOCAL_FILE_PATH = Environment.getExternalStorageDirectory() + "/com.yr.huajian/image/";
 
     private static class Holder {
@@ -52,9 +50,19 @@ public class VideoHelper {
         return media;
     }
 
-    public void getVideoThumbInBackstage(String path, int count, callback callback) {
+    public void getVideoThumbInBackstage(String path, long currentTime, Callback callback) {
+        BackgroundTask task = new BackgroundTask(callback);
+        task.execute(path, currentTime);
+    }
+
+    public void getVideoThumbInBackstage(String path, int count, Callback callback) {
         BackgroundTask task = new BackgroundTask(callback);
         task.execute(path, count);
+    }
+
+    public void getVideoDurationInBackStage(String path, Callback callback) {
+        BackgroundTask task = new BackgroundTask(callback);
+        task.execute(path);
     }
 
     /**
@@ -95,7 +103,7 @@ public class VideoHelper {
             if (media == null) {
                 return null;
             }
-            Bitmap thumb = media.getFrameAtTime(coverTime * 1000000);//这个参数是微秒
+            Bitmap thumb = media.getFrameAtTime(coverTime * 1000000, MediaMetadataRetriever.OPTION_CLOSEST);//这个参数是微秒
             strCoverFilePath = getLocalPath() + "thumb" + coverTime + "_" + System.currentTimeMillis() + ".jpg";
             File f = new File(strCoverFilePath);
             if (f.exists()) f.delete();
@@ -108,6 +116,19 @@ public class VideoHelper {
             e.printStackTrace();
         }
         return strCoverFilePath;
+    }
+
+    public Bitmap getVideoThumbBitmap(String videoPath, long coverTime) {
+        try {
+            MediaMetadataRetriever media = getMediaRetriever(videoPath);
+            if (media == null) {
+                return null;
+            }
+            return media.getFrameAtTime(coverTime * 1000000, MediaMetadataRetriever.OPTION_CLOSEST);//这个参数是微秒
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     /**
@@ -134,12 +155,12 @@ public class VideoHelper {
             String timeStamp = String.valueOf(System.currentTimeMillis());
             //按照数量等分视频长度截图
             while ((startTime + interval) < seconds) {
-                Bitmap thumb = media.getFrameAtTime((long) (startTime * 1000000));//这个参数是微秒
+                Bitmap thumb = media.getFrameAtTime((long) (startTime * 1000000), MediaMetadataRetriever.OPTION_CLOSEST);//这个参数是微秒
                 String strCoverFilePath = getLocalPath() + "thumb" + startTime + "_" + timeStamp + ".jpg";
                 File f = new File(strCoverFilePath);
-                if (f.exists()){
+                if (f.exists()) {
                     f.delete();
-                }else {
+                } else {
                     f.createNewFile();
                 }
                 FileOutputStream fOut = null;
@@ -156,6 +177,34 @@ public class VideoHelper {
             Log.e(VideoHelper.class.getSimpleName(), "getVideoThumb: " + e.toString());
         }
         return paths;
+    }
+
+    public List<Bitmap> getVideoThumbBitmap(String videoPath, int count) {
+        List<Bitmap> thumbs = new ArrayList<>();
+        try {
+            MediaMetadataRetriever media = getMediaRetriever(videoPath);
+            if (media == null) {
+                return null;
+            }
+
+            //总长度
+            int seconds = Integer.valueOf(media.extractMetadata(MediaMetadataRetriever.METADATA_KEY_DURATION)) / 1000;
+            //间隔
+            int interval = seconds / count;
+            //从第一帧开始
+            int startTime = 1;
+            //按照数量等分视频长度截图
+            while ((startTime + interval) < seconds) {
+                Bitmap thumb = media.getFrameAtTime((long) (startTime * 1000000), MediaMetadataRetriever.OPTION_CLOSEST);//这个参数是微秒
+                //do
+                startTime = startTime + interval;
+                thumbs.add(thumb);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            Log.e(VideoHelper.class.getSimpleName(), "getVideoThumb: " + e.toString());
+        }
+        return thumbs;
     }
 
     /**
@@ -178,7 +227,7 @@ public class VideoHelper {
             for (int i = 0; i < times.length; i++) {
                 long time = times[i];
                 if (time >= seconds) continue;
-                Bitmap thumb = media.getFrameAtTime(time * 1000000);//这个参数是微秒
+                Bitmap thumb = media.getFrameAtTime(time * 1000000, MediaMetadataRetriever.OPTION_CLOSEST);//这个参数是微秒
                 String strCoverFilePath = getLocalPath() + "thumb" + time + "_" + timeStamp + ".jpg";
                 File f = new File(strCoverFilePath);
                 if (f.exists()) f.delete();
@@ -197,9 +246,9 @@ public class VideoHelper {
 
     public static class BackgroundTask extends AsyncTask<Object, Integer, Object> {
 
-        private callback callback;
+        private Callback callback;
 
-        public BackgroundTask(VideoHelper.callback callback) {
+        public BackgroundTask(VideoHelper.Callback callback) {
             this.callback = callback;
         }
 
@@ -216,10 +265,10 @@ public class VideoHelper {
             }
             if (objects.length == 2) {
                 if (objects[1] instanceof Integer) {
-                    return VideoHelper.getInstance().getVideoThumb(path, (int) objects[1]);
+                    return VideoHelper.getInstance().getVideoThumbBitmap(path, (int) objects[1]);
                 }
                 if (objects[1] instanceof Long) {
-                    return VideoHelper.getInstance().getVideoThumb(path, (long) objects[1]);
+                    return VideoHelper.getInstance().getVideoThumbBitmap(path, (long) objects[1]);
                 }
             }
             if (objects.length > 2) {
@@ -229,22 +278,25 @@ public class VideoHelper {
         }
 
         @Override
-        protected void onPostExecute(Object o) {
-            super.onPostExecute(o);
+        protected void onPostExecute(Object result) {
+            super.onPostExecute(result);
             if (callback == null) return;
-            if (o instanceof Long) {
-                callback.complete((long) o);
+            if (result instanceof Long) {
+                callback.complete((long) result);
             }
-            if (o instanceof String) {
-                callback.complete((String) o);
+            if (result instanceof String) {
+                callback.complete((String) result);
             }
-            if (o instanceof ArrayList) {
-                callback.complete((List<String>) o);
+            if (result instanceof ArrayList) {
+                callback.complete((List<Bitmap>) result);
+            }
+            if (result instanceof Bitmap) {
+                callback.complete((Bitmap) result);
             }
         }
     }
 
-    public interface callback<T> {
+    public interface Callback<T> {
         void complete(T t);
     }
 }
