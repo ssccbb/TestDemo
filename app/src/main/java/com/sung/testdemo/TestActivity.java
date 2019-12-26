@@ -34,6 +34,9 @@ import com.sung.testdemo.zoomscrollview.ZoomActivity;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * @author sung
+ */
 public class TestActivity extends AppCompatActivity {
     private RecyclerView list;
 
