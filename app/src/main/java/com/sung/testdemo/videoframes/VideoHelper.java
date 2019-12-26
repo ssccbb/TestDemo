@@ -297,6 +297,10 @@ public class VideoHelper {
     }
 
     public interface Callback<T> {
+
         void complete(T t);
+
+        void failed(String msg);
+
     }
 }

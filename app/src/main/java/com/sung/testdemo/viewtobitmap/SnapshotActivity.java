@@ -20,9 +20,9 @@ public class SnapshotActivity extends AppCompatActivity {
         snapshot();
     }
 
-    private void snapshot(){
+    private void snapshot() {
         View snapshotView = LayoutInflater.from(this).inflate(R.layout.view_snap_shot_demo, null, false);
         ((ImageView) findViewById(R.id.img)).setImageBitmap(SnapshotUtils.viewSnapshot(snapshotView));
-        ((ImageView) findViewById(R.id.img1)).setImageBitmap(SnapshotUtils.viewSnapshot(snapshotView, Color.WHITE,30));
+        ((ImageView) findViewById(R.id.img1)).setImageBitmap(SnapshotUtils.viewSnapshot(snapshotView, Color.WHITE, 30));
     }
 }

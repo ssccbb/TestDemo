@@ -8,11 +8,12 @@
     tools:context=".livedata_viewmodel.LiveData_ViewModelActivity">
 
     <TextView
-        android:text="LiveData&amp;ViewModel"
+        android:text="LiveDtaViewmodel"
         android:alpha="0.3"
         android:textColor="#0f0f0f"
         android:textSize="25sp"
         android:textStyle="bold"
+        android:gravity="center"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 

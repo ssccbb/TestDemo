@@ -6,6 +6,16 @@
     android:layout_height="match_parent"
     tools:context=".main.Main1Activity">
 
+    <TextView
+        android:text="生命周期"
+        android:alpha="0.3"
+        android:textColor="#0f0f0f"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
     <EditText
         android:id="@+id/text"
         android:layout_width="match_parent"

@@ -91,17 +91,33 @@ public class VideoFetchingSeekbar extends RelativeLayout {
     public void bindVideoResource(String path) {
         mVideoPath = path;
 
-        getThumbNails = thumbNails -> {
-            mThumbNails.clear();
-            if (thumbNails.isEmpty()) return;
-            mThumbNails.add(thumbNails.get(0));
-            mThumbNails.addAll(thumbNails);
-            mThumbNails.add(thumbNails.get(thumbNails.size() - 1));
-            //
-            mThumbAdapter.notifyDataSetChanged();
+        getThumbNails = new VideoHelper.Callback<List<Bitmap>>() {
+            @Override
+            public void complete(List<Bitmap> thumbNails) {
+                mThumbNails.clear();
+                if (thumbNails.isEmpty()) return;
+                mThumbNails.add(thumbNails.get(0));
+                mThumbNails.addAll(thumbNails);
+                mThumbNails.add(thumbNails.get(thumbNails.size() - 1));
+                //
+                mThumbAdapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void failed(String msg) {
+
+            }
         };
-        getVideoDuration = duration -> {
-            mVideoDuration = duration;
+        getVideoDuration = new VideoHelper.Callback<Long>() {
+            @Override
+            public void complete(Long duration) {
+                mVideoDuration = duration;
+            }
+
+            @Override
+            public void failed(String msg) {
+
+            }
         };
 
         //获取视频长度
@@ -151,12 +167,29 @@ public class VideoFetchingSeekbar extends RelativeLayout {
                 if (lastX == -1 && lastY == -1) break;
                 //计算出需要移动的距离
                 int dx = rawX - lastX;
+
+                int mThumbWidth = mPointerCoordinate[0];
+                int mThumbPointerLeft = mThumbPointerContainer.getLeft();
+//                int mThumbPointerRight = mThumbPointerContainer.getRight();
+                int mSeekbarLeft = this.getLeft();
+                int mSeekbarRight = this.getRight();
                 //将移动距离加上，现在本身距离边框的位置
-                int left = mThumbPointerContainer.getLeft() + dx;
-                int right = mThumbPointerContainer.getRight() + dx;
-                if (left < 0 || right > this.getRight())
+                int left = mThumbPointerLeft + dx;
+//                int right = mThumbPointerRight + dx;
+
+                /*
+                 * .getLeft()为获取当前view距离父容器左右距离
+                 * 此处判断左边界过界：滑块getLeft()+seekbar.getLeft() < seekbar.getLeft()
+                 *
+                 * 实际在操作的时候leftmargin设置过多会导致滑块超出seekbar容器
+                 * 此时.getRight()方法获取到的值恒=容器右边界距左边界的数值
+                 * 此处判断右边界过界：滑块getLeft()+滑块宽+seekbar.getLeft() > seekbar.getRight()
+                 *
+                 * */
+                if (left + mSeekbarLeft < mSeekbarLeft || left + mThumbWidth + mSeekbarLeft > mSeekbarRight)
                     //不超过左右临界点
                     //滑块是有一定宽度的recyclerview需要前后各插入两条占位数据才可使滑块可划到长度内的头和尾
+                    //(为保证滑块中线为seekbar的起始线和结束线占位item宽度皆为滑块一半)
                     return true;
                 //获取到layoutParams然后改变属性 在设置回去
                 RelativeLayout.LayoutParams layoutParams =
@@ -248,6 +281,11 @@ public class VideoFetchingSeekbar extends RelativeLayout {
                     listener.onObtainBitmapComp(thumb);
                 }
             }
+
+            @Override
+            public void failed(String msg) {
+
+            }
         });
     }
 
@@ -259,7 +297,11 @@ public class VideoFetchingSeekbar extends RelativeLayout {
     private int getThumbCount() {
         //多少张图
         int[] parms = measureView(this);
-        return parms[0] / mPointerCoordinate[0] - 1;
+        int count = parms[0] / mPointerCoordinate[0];
+        if (parms[0] % mPointerCoordinate[0] > 0) {
+            count++;
+        }
+        return count - 1;
     }
 
     /**
