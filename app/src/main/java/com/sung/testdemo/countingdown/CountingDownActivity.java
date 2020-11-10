@@ -1,8 +1,12 @@
 package com.sung.testdemo.countingdown;
 
+import android.os.SystemClock;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Html;
+import android.util.Log;
 import android.widget.Button;
+import android.widget.Chronometer;
 import android.widget.Toast;
 
 import com.sung.testdemo.R;
@@ -23,6 +27,8 @@ public class CountingDownActivity extends AppCompatActivity {
         initView();
         setListener();
         reset();
+
+        setChonometerHTML();
     }
 
     private void initView() {
@@ -50,5 +56,20 @@ public class CountingDownActivity extends AppCompatActivity {
         if (min > 3) min = 1;
         duration.setText(min + "分钟");
         timer.reset(min);
+    }
+
+
+    //Chronometer的HTML字符串设置测试
+    private void setChonometerHTML(){
+        Chronometer timer = findViewById(R.id.cv_timer);
+        timer.setBase(SystemClock.elapsedRealtime());
+        timer.setOnChronometerTickListener(new Chronometer.OnChronometerTickListener() {
+            @Override
+            public void onChronometerTick(Chronometer chronometer) {
+                Log.d(CountingDownActivity.class.getSimpleName(),System.currentTimeMillis()+"");
+                timer.setText(Html.fromHtml("已转动星盘: <font color='#FFC6CE'>"+chronometer.getFormat()+"次</font>"));
+            }
+        });
+        timer.start();
     }
 }
