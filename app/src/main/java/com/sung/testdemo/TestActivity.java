@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 import com.sung.testdemo.GridScoreBoard.GridHistoryActivity;
 import com.sung.testdemo.autocolumngridview.AutoColumnGridActivity;
+import com.sung.testdemo.autoscrollview.AutoScrollViewActivity;
 import com.sung.testdemo.countingdown.CountingDownActivity;
 import com.sung.testdemo.gesture.GestureActivity;
 import com.sung.testdemo.griddecoration.GridActivity;
@@ -25,14 +26,10 @@ import com.sung.testdemo.randomnickname.RandomNicknameActivity;
 import com.sung.testdemo.scoreboard.ScoreBoardActivity;
 import com.sung.testdemo.tapview.TapActivity;
 import com.sung.testdemo.text2pic.Text2PicActivity;
-import com.sung.testdemo.videoframes.VideoFetchingActivity;
 import com.sung.testdemo.videoframes.VideoFetchingLaunchActivity;
 import com.sung.testdemo.viewtobitmap.SnapshotActivity;
 import com.sung.testdemo.zoomscrollview.PullerActivity;
 import com.sung.testdemo.zoomscrollview.ZoomActivity;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * @author sung
@@ -58,7 +55,8 @@ public class TestActivity extends AppCompatActivity {
             "自适应数量表格布局",
             "view截图生成图片",
             "生成随机昵称",
-            "获取视频封面截图"
+            "获取视频封面截图",
+            "自动滚动的ScrollView"
     };
     private Class[] classes = {
             Main1Activity.class,
@@ -78,7 +76,8 @@ public class TestActivity extends AppCompatActivity {
             AutoColumnGridActivity.class,
             SnapshotActivity.class,
             RandomNicknameActivity.class,
-            VideoFetchingLaunchActivity.class
+            VideoFetchingLaunchActivity.class,
+            AutoScrollViewActivity.class
     };
 
     @Override

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="AutoScrollBackgroundView">
+        <attr name="android:src" format="reference"/>
+        <attr name="duration" format="integer"/>
+        <attr name="repeatCount" format="integer"/>
+        <attr name="linearInterpolator" format="boolean"/>
+    </declare-styleable>
+</resources>

@@ -13,7 +13,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".videoframes.VideoFetchingLaunchActivity"></activity>
+        <activity android:name=".autoscrollview.AutoScrollViewActivity"></activity>
+        <activity android:name=".videoframes.VideoFetchingLaunchActivity" />
         <activity android:name=".randomnickname.RandomNicknameActivity" />
         <activity android:name=".viewtobitmap.SnapshotActivity" />
         <activity android:name=".metiraldesign.fab.FABActivity" />
